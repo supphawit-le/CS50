@@ -174,4 +174,4 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
 
       '''
 ## Algorithm for merge sort
-![Mertsort](https://github.com/supphawit-le/CS50/blob/1d0355e6179f80ae5d0ea01937542310b81c44b9/image/merge sort.png)
+![Mertsort](https://github.com/supphawit-le/CS50/blob/1d0355e6179f80ae5d0ea01937542310b81c44b9/image/merge%20sort.png)
