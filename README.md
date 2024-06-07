@@ -92,14 +92,14 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
   - [Yes] Search from half book page and cut follow alphabet
 ## Sudo code
    *example1*
-      '''
+
       For each door from left to right
          If 50 is behind door
             Return true
       Return false
-      '''
+
    *example2*
-      '''
+
       If no doors left
          Return false
       If 50 is behind middle door
@@ -108,10 +108,11 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
          Search left half
       Else if 50 > middle door
          Search right half
-      '''
+
 ## Struct for convert array to object
    *search by array*
-      '''
+
+
       #include <cs50.h>
       #include <stdio.h>
       #include <string.h>
@@ -133,10 +134,9 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
          printf("Not Found\n");
          return 1;
       }
-      '''
 
-      *search by object
-      '''
+   *search by object*
+
          #include <cs50.h>
          #include <stdio.h>
          #include <string.h>
@@ -167,11 +167,91 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
                      return 0;
                }
             }
-            
+
             printf("Not Found\n");
             return 1;
          }
 
-      '''
 ## Algorithm for merge sort
 ![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/merge%20sort.png)
+
+
+# Lecture4_Memory
+## RGB color
+   * Base-16
+      * 00 = 0
+      * FF = 255
+## Pointer Operator
+   * __&__ to find the address of memory that the variable stored
+
+         #include <stdio.h>
+
+         int main(void)
+         {
+            int n =50;
+            printf("%p\n",&n);
+         }
+
+   * __*__ to identify the address in memory (POINTER)
+
+         #include <stdio.h>
+
+         int main(void)
+         {
+            int n =50;
+            int *p = &n;
+            printf("%p\n",p);
+         }
+      * *p is the pointer parameter that store the number of address of n
+      * *p (address of n) --> n --> 50
+
+![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/POINTER.png)
+
+![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/POINTER_string.png)
+   * for the string, the point identify only the first character and the end of string is normally "\0"
+      * string s = "HI!";  (in normally)
+      * char *s = "HI!";   (the C stored the address of first char) (without CS50.h)
+   * for print the variable of pointer
+
+         #include <stdio.h>
+
+         int main(void)
+         {
+            int n =50;
+            int *p = &n;
+            printf("%p\n",p);   //output : 0x7ffcbdc4402c
+            printf("%i\n",*p);  //output : 50
+         }
+   * for print string without CS50.h (use pointer)
+
+         #include <stdio.h>
+
+         int main(void)
+         {
+            char *s = "HI!";
+            printf("%p\n",s);           //output : 0x59599f756004
+            printf("%p\n", &s[0]);      //output : 0x59599f756004
+            printf("%p\n", &s[1]);      //output : 0x59599f756005
+            printf("%p\n", &s[2]);      //output : 0x59599f756006
+            printf("%p\n", &s[3]);      //output : 0x59599f756007
+            printf("%s\n",s);           //output : HI!
+         }
+
+## Point Arithmetic
+   * for Print the char with array and pointer in string
+
+         #include <stdio.h>
+
+         int main(void)
+         {
+            char *s = "HI!";
+            //use array
+            printf("%c\n", s[0]);  //output : H
+            printf("%c\n", s[1]);  //output : I
+            printf("%c\n", s[2]);  //output : !
+
+            //use pointer
+            printf("%c\n", *s);      //output : H
+            printf("%c\n", *(s+1));  //output : I
+            printf("%c\n", *(s+2));  //output : !
+         }
