@@ -594,4 +594,4 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
 
       * Using point to swap
 
-         ![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/memory_swap2.png)
+         ![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/memory_swap3.png)
