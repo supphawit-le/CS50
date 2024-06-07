@@ -177,10 +177,9 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
 
 
 # Lecture4_Memory
-## RGB color
-   * Base-16
-      * 00 = 0
-      * FF = 255
+## Base-16
+   * 00 = 0
+   * FF = 255
 ## Pointer Operator
    * __&__ to find the address of memory that the variable stored
 
@@ -234,8 +233,23 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
             printf("%p\n", &s[1]);      //output : 0x59599f756005
             printf("%p\n", &s[2]);      //output : 0x59599f756006
             printf("%p\n", &s[3]);      //output : 0x59599f756007
+
+            //print string without CS50.h
             printf("%s\n",s);           //output : HI!
          }
+
+   * Example 1
+
+         #include <stdio.h>
+
+         int main(void)
+         {
+            char *s = "HI!";
+            printf("%s\n", s);      //output : HI!
+            printf("%s\n", (s+1));  //output : I!
+            printf("%s\n", (s+2));  //output : !
+         }
+
 
 ## Point Arithmetic
    * for Print the char with array and pointer in string
@@ -255,3 +269,80 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
             printf("%c\n", *(s+1));  //output : I
             printf("%c\n", *(s+2));  //output : !
          }
+   * for string comparation
+
+         #include <cs50.h>
+         #include <stdio.h>
+         #include <string.h>
+
+         int main(void)
+         {
+
+            string s = get_string("s: ");
+            string t = get_string("t: ");
+
+            if (strcmp(s ,t) == 0)
+            {
+               printf("Same\n");
+            }
+            else
+            {
+               printf("Different\n");
+            }
+         }
+      * if (*s == *t) --> Check only first char in string
+      * if (*s == *t && *(s+1) == *(t+1) ....) --> you can use it
+
+   * for copy string to another varible
+
+         #include <stdio.h>
+         #include <cs50.h>
+         #include <string.h>
+         #include <ctype.h>
+
+         int main(void)
+         {
+            char *s = get_string("s: ");     // input : hi!
+            char *t = s;
+
+            if (strlen(t) >0)
+            {
+               t[0] = toupper(t[0]);
+            }
+            printf("s : %s\n", s);           // output : Hi! (it is not changed to uppercase)
+            printf("t : %s\n", t);           // output : Hi!
+         }
+
+      ![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/copy_string.png)
+
+### function for memory management (include <stdlib.h>)
+   * __malloc__  (memory allocation)
+   * __free__
+   * Example1
+
+         #include <stdio.h>
+         #include <cs50.h>
+         #include <stdlib.h> //for call malloc
+         #include <ctype.h>
+         #include <string.h>
+
+         int main(void)
+         {
+            char *s = get_string("s: ");     // input : hi!
+            char *t = malloc(strlen(s)+1);   // allocate t in the memory
+
+            for (int i = 0; i < strlen(s) + 1; i++)
+            {
+               t[i] = s[i];                  //copy s to t each char to t's memory
+            }
+
+            if (strlen(t) > 0)
+            {
+               t[0] = toupper(t[0]);
+            }
+            printf("s : %s\n", s);           // output : hi!
+            printf("t : %s\n", t);           // output : Hi!
+         }
+
+      ![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/copy_string2.png)
+
