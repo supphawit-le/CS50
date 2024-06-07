@@ -206,10 +206,17 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
 
 ![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/POINTER.png)
 
+* p =  0x123
+* *p = 50
+
 ![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/POINTER_string.png)
+
+* s =  0x123
+* *s = "HI!"
+
    * for the string, the point identify only the first character and the end of string is normally "\0"
-      * string s = "HI!";  (in normally)
-      * char *s = "HI!";   (the C stored the address of first char) (without CS50.h)
+   * string s = "HI!";  (in normally)
+   * char *s = "HI!";   (the C stored the address of first char) (without CS50.h)
    * for print the variable of pointer
 
          #include <stdio.h>
@@ -318,7 +325,7 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
 ### function for memory management (include <stdlib.h>)
    * __malloc__  (memory allocation)
    * __free__
-   * Example1
+   * Example1: malloc
 
          #include <stdio.h>
          #include <cs50.h>
@@ -346,3 +353,245 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
 
       ![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/copy_string2.png)
 
+      * Example2 : free
+
+            #include <stdio.h>
+            #include <cs50.h>
+            #include <stdlib.h>
+            #include <ctype.h>
+            #include <string.h>
+
+            int main(void)
+            {
+               char *s = get_string("s: ");  // input : hi!
+
+               if (s == NULL)
+               {
+                  return 1;
+               }
+
+               char *t = malloc(strlen(s)+1);
+               strcpy(t,s);
+               if (s == NULL)
+               {
+                  return 1;
+               }
+
+
+               if (strlen(t) > 0)
+               {
+                  t[0] = toupper(t[0]);
+               }
+               printf("s : %s\n", s);      // output : hi!
+               printf("t : %s\n", t);      // output : Hi!
+
+               free(t);                    // return memory space to system
+               return 0;
+            }
+
+         In the C programming language, if you do not use the free() function to release the memory that you have allocated (such as using malloc(), calloc(), or realloc()), that memory will not be returned to the system during the program’s execution. This can lead to memory leaks, causing the program to consume more and more memory over time.
+
+         However, when the program terminates, the operating system will automatically reclaim all the memory that the program had allocated. Therefore, in the case where the program has finished running, all the allocated memory will be returned to the operating system.
+
+         Even though the operating system handles memory reclamation when the program ends, it is still good practice to use the free() function correctly to avoid memory leaks in programs that need to run for extended periods or that use a lot of memory.
+
+### Valgrind (software for check bug in c code)
+   * Example1 wrong index in array (but completed complied and run)
+
+         #include <stdio.h>
+         #include <stdlib.h>
+
+         int main(void)
+         {
+            int *x = malloc(3 * sizeof(int));
+            x[1] = 72;  //should be x[0]
+            x[2] = 73;  //should be x[1]
+            x[3] = 34;  //should be x[2]
+         }
+   * Using valgrind to verify
+
+         $ valgrind ./memory
+         ==43881== Memcheck, a memory error detector
+         ==43881== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+         ==43881== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+         ==43881== Command: ./memory
+         ==43881==
+         ==43881== Invalid write of size 4
+         ==43881==    at 0x109170: main (memory.c:9)
+         ==43881==  Address 0x4bb404c is 0 bytes after a block of size 12 alloc'd
+         ==43881==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+         ==43881==    by 0x109151: main (memory.c:6)
+         ==43881==
+         ==43881==
+         ==43881== HEAP SUMMARY:
+         ==43881==     in use at exit: 12 bytes in 1 blocks
+         ==43881==   total heap usage: 1 allocs, 0 frees, 12 bytes allocated
+         ==43881==
+         ==43881== 12 bytes in 1 blocks are definitely lost in loss record 1 of 1
+         ==43881==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+         ==43881==    by 0x109151: main (memory.c:6)
+         ==43881==
+         ==43881== LEAK SUMMARY:
+         ==43881==    definitely lost: 12 bytes in 1 blocks
+         ==43881==    indirectly lost: 0 bytes in 0 blocks
+         ==43881==      possibly lost: 0 bytes in 0 blocks
+         ==43881==    still reachable: 0 bytes in 0 blocks
+         ==43881==         suppressed: 0 bytes in 0 blocks
+         ==43881==
+         ==43881== For lists of detected and suppressed errors, rerun with: -s
+         ==43881== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+
+   * __Example2__ correct code
+
+         #include <stdio.h>
+         #include <stdlib.h>
+
+         int main(void)
+         {
+            int *x = malloc(3 * sizeof(int));
+            if (x == NULL)
+            {
+               return 1;
+            }
+            x[0] = 72;
+            x[1] = 73;
+            x[2] = 34;
+            free(x);
+            return 0;
+         }
+
+   * Using __valgrind__ to verify
+
+         $ valgrind ./memory
+         ==46801== Memcheck, a memory error detector
+         ==46801== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+         ==46801== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+         ==46801== Command: ./memory
+         ==46801==
+         ==46801==
+         ==46801== HEAP SUMMARY:
+         ==46801==     in use at exit: 0 bytes in 0 blocks
+         ==46801==   total heap usage: 1 allocs, 1 frees, 12 bytes allocated
+         ==46801==
+         ==46801== All heap blocks were freed -- no leaks are possible
+         ==46801==
+         ==46801== For lists of detected and suppressed errors, rerun with: -s
+         ==46801== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+### Garbage value
+   * __Example1__ : def variable but not input the value
+      * code
+
+            #include <stdio.h>
+            #include <stdlib.h>
+
+            int main(void)
+            {
+               int scores[1024];
+               for(int i = 0 ; i < 1024; i++)
+               {
+                  printf ("%i\n",scores[i]);
+               }
+            }
+
+      * output (there are many initial value)
+
+            ...
+            0
+            0
+            0
+            408660876
+            32007
+            408822496
+            32007
+            408572272
+            32007
+            408573568
+            32007
+            408574848
+            32007
+            408576128
+            32007
+            408820464
+            32007
+            ...
+
+   * __Example2__ : Swap
+      * code (wrong)
+
+            #include <stdio.h>
+            #include <stdlib.h>
+
+            void swap(int a, int b);
+
+            int main(void)
+            {
+               int x = 1;
+               int y = 2;
+
+               printf ("x is %i, y is %i\n",x,y);
+               swap (x,y);
+               printf ("x is %i, y is %i\n",x,y);
+            }
+
+            void swap (int a, int b)
+            {
+               int temp = a;
+               a = b;
+               b = temp;
+            }
+
+      * output
+
+            x is 1, y is 2
+            x is 1, y is 2
+      * code (correct)
+
+            #include <stdio.h>
+            #include <stdlib.h>
+
+            void swap(int *a, int *b);
+
+            int main(void)
+            {
+               int x = 1;
+               int y = 2;
+
+               printf ("x is %i, y is %i\n",x,y);
+               swap (&x,&y);
+               printf ("x is %i, y is %i\n",x,y);
+            }
+
+            void swap (int *a, int *b)
+            {
+               int temp = *a;
+               *a = *b;
+               *b = temp;
+            }
+
+      * output
+
+            x is 1, y is 2
+            x is 2, y is 1
+      * In this case, The memory
+
+         ![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/memory_swap1.png)
+
+      1.	Machine Code - This section contains the executable code of the program.
+      2.	Globals - This section holds global variables that are accessible throughout the program.
+      3.	Heap - This section is used for dynamic memory allocation, growing downward.
+      4.	Stack - This section is used for local variables and function calls, growing upward.
+
+      ___Heap overflow___ occurs when the heap grows too large, exceeding its allocated boundaries. This can overwrite other memory regions, potentially causing program crashes or security vulnerabilities, as unintended memory areas may be modified.
+
+      ___Stack overflow___ happens when the stack exceeds its allocated limit, often due to deep or infinite recursion, or excessive local variable allocation. This can overwrite other memory regions and lead to program crashes or unpredictable behavior.
+
+
+      ___Buffer overflow___ occurs when more data is written to a buffer (a contiguous block of memory) than it can hold. This can overwrite adjacent memory, potentially causing crashes, corruption of data, or security vulnerabilities by allowing the execution of arbitrary code.
+
+      * Using swap value (in the end stack of swap is distroyed)
+
+         ![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/memory_swap2.png)
+
+      * Using point to swap
+
+         ![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/memory_swap2.png)
