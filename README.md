@@ -595,3 +595,37 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
       * Using point to swap
 
          ![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/memory_swap3.png)
+
+### Get string without cs50.h
+   * __Example1__ : with array
+
+         #include <stdio.h>
+
+         int main(void)
+         {
+            char s[4];              //s[40] or s[400] or ....
+            printf("s: ");
+            scanf("%s", s);
+            printf("s: %s\n",s);
+         }
+
+### Write CSV file
+   * __Example1__
+
+         // Save names and numbers to a CSV file
+
+         #include <cs50.h>
+         #include <stdio.h>
+         #include <string.h>
+
+         int main(void)
+         {
+            FILE *file = fopen("phonebook.csv", "a"); // a = append mode
+
+            string name = get_string("Name: ");
+            string number = get_string("Number: ");
+
+            fprintf (file, "%s,%s\n",name,number);
+
+            fclose(file);
+         }
