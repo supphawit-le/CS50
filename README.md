@@ -2,6 +2,7 @@
 
 ## manual
 https://manual.cs50.io/ \
+https://manual.cs50.io/#stdio.h \
 https://manual.cs50.io/#cs50.h \
 https://clang.llvm.org/
 
