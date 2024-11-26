@@ -171,7 +171,172 @@ for print char in string (indevidual) = printf ("%c %c" ,name[0],name[1])
 
             printf("Not Found\n");
             return 1;
-         }
+         } 
+         
+## Key Topics
+
+- Algorithms
+  - Thinking algorithmically: mapping real-world problems to code solutions.
+  - Divide and conquer strategy.
+- Data Structures
+  - Arrays: contiguous memory blocks for storing data.
+- Searching Algorithms
+  - Linear search: checking elements sequentially.
+  - Binary search: dividing sorted data to locate elements.
+- Efficiency Analysis
+  - Big-O notation: characterizing algorithm performance.
+  - Omega notation: best-case performance.
+  - Theta notation: performance bounds.
+- Sorting
+  - The concept of sorting: transforming unsorted data into ordered data.
+
+## Examples & Concepts
+
+### Example: Phone Book Algorithm
+1. **Linear Search**: Checking page by page (O(n)).
+2. **Binary Search**: Dividing the phone book in half (O(log n)).
+
+### Group Activity
+- Counting attendees using various algorithms: demonstrating efficiency differences.
+
+### Data Structures in Practice
+- `Array`: indexed collection of items.
+- Simulating phone book functionality using arrays.
+
+### Implementing Search Algorithms in C
+1. Using arrays to store data.
+2. Comparing strings using `strcmp` from `<string.h>`.
+3. Structuring code for clarity.
+
+### Sorting Activity
+- Volunteers physically sorting themselves to demonstrate sorting algorithms.
+
+## Big-O Notation Examples
+1. **Linear Search**: O(n) - checks each element.
+2. **Binary Search**: O(log n) - halves data each iteration.
+
+### Pseudocode Examples
+
+#### Linear Search
+```
+for i from 0 to n-1:
+    if array[i] == target:
+        return true
+return false
+```
+
+#### Binary Search
+```
+if target == middle_element:
+    return true
+elif target < middle_element:
+    search left half
+else:
+    search right half
+```
+
+## Concepts in C
+
+### Code Examples
+- Implementing algorithms in C using `for` loops and arrays.
+- Handling strings with `strcmp` for accurate comparisons.
+
+### Introduction to Structs
+- Defining custom data types to group related data.
+
+```c
+typedef struct {
+    string name;
+    string number;
+} person;
+```
+
+### Optimization & Best Practices
+- Using constants for scalability.
+- Emphasizing clarity in pseudocode and implementation.
+
+
+## Sorting Algorithms
+
+Sorting is the process of organizing data in a specified order. Different algorithms have different efficiencies.
+
+### Examples of Sorting Algorithms
+
+1. **Bubble Sort**
+   - Description: Repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.
+   - Pseudocode:
+   ```
+   for i from 0 to n-1:
+       for j from 0 to n-i-1:
+           if array[j] > array[j+1]:
+               swap(array[j], array[j+1])
+   ```
+   - Efficiency: O(n^2) in the worst and average case, O(n) in the best case (if already sorted).
+
+2. **Selection Sort**
+   - Description: Divides the list into a sorted and unsorted section, repeatedly selects the smallest (or largest) element from the unsorted section and moves it to the sorted section.
+   - Pseudocode:
+   ```
+   for i from 0 to n-1:
+       min_index = i
+       for j from i+1 to n-1:
+           if array[j] < array[min_index]:
+               min_index = j
+       swap(array[i], array[min_index])
+   ```
+   - Efficiency: O(n^2) in all cases.
+
+3. **Insertion Sort**
+   - Description: Builds the sorted list one item at a time by repeatedly picking the next element and inserting it into its proper position.
+   - Pseudocode:
+   ```
+   for i from 1 to n-1:
+       key = array[i]
+       j = i-1
+       while j >= 0 and array[j] > key:
+           array[j+1] = array[j]
+           j = j-1
+       array[j+1] = key
+   ```
+   - Efficiency: O(n^2) in the worst and average case, O(n) in the best case (if already sorted).
+
+4. **Merge Sort**
+   - Description: Divides the array into halves, sorts each half, and then merges them together.
+   - Pseudocode:
+   ```
+   if size of array > 1:
+       split array into two halves
+       recursively sort both halves
+       merge the sorted halves
+   ```
+   - Efficiency: O(n log n) in all cases.
+
+5. **Quick Sort**
+   - Description: Picks a pivot, partitions the array such that elements smaller than the pivot are on the left and larger on the right, then recursively sorts the partitions.
+   - Pseudocode:
+   ```
+   if size of array > 1:
+       choose pivot
+       partition array into left (smaller), pivot, and right (larger)
+       recursively sort left and right
+   ```
+   - Efficiency: O(n log n) in the best and average case, O(n^2) in the worst case (poor pivot selection).
+
+### Comparison of Sorting Algorithms
+
+| Algorithm      | Best Case     | Average Case | Worst Case    | Notes                                     |
+|----------------|---------------|--------------|---------------|-------------------------------------------|
+| Bubble Sort    | O(n)          | O(n^2)       | O(n^2)        | Inefficient, rarely used in practice.     |
+| Selection Sort | O(n^2)        | O(n^2)       | O(n^2)        | Simple but always performs O(n^2) work.  |
+| Insertion Sort | O(n)          | O(n^2)       | O(n^2)        | Good for nearly sorted data.              |
+| Merge Sort     | O(n log n)    | O(n log n)   | O(n log n)    | Requires extra memory for merging.        |
+| Quick Sort     | O(n log n)    | O(n log n)   | O(n^2)        | Highly efficient with good pivot choice.  |
+
+### Conclusion
+
+- **Fastest in General**: Quick Sort, with an average time complexity of O(n log n).
+- **Most Stable**: Merge Sort, as it maintains the relative order of equal elements.
+- **Easiest to Implement**: Bubble Sort or Insertion Sort for small or simple datasets.
 
 ## Algorithm for merge sort
 ![Mertsort](https://github.com/supphawit-le/CS50/blob/main/image/merge%20sort.png)
