@@ -321,16 +321,47 @@ Sorting is the process of organizing data in a specified order. Different algori
        recursively sort left and right
    ```
    - Efficiency: O(n log n) in the best and average case, O(n^2) in the worst case (poor pivot selection).
+  
 
-### Comparison of Sorting Algorithms
+### Comparison of Sorting Algorithms with Omega Notation
 
-| Algorithm      | Best Case     | Average Case | Worst Case    | Notes                                     |
-|----------------|---------------|--------------|---------------|-------------------------------------------|
-| Bubble Sort    | O(n)          | O(n^2)       | O(n^2)        | Inefficient, rarely used in practice.     |
-| Selection Sort | O(n^2)        | O(n^2)       | O(n^2)        | Simple but always performs O(n^2) work.  |
-| Insertion Sort | O(n)          | O(n^2)       | O(n^2)        | Good for nearly sorted data.              |
-| Merge Sort     | O(n log n)    | O(n log n)   | O(n log n)    | Requires extra memory for merging.        |
-| Quick Sort     | O(n log n)    | O(n log n)   | O(n^2)        | Highly efficient with good pivot choice.  |
+| Algorithm      | **Best Case (Ω)** | **Average Case (O)** | **Worst Case (O)** | **Notes**                                |
+|----------------|--------------------|-----------------------|---------------------|------------------------------------------|
+| Bubble Sort    | Ω(n)              | O(n^2)               | O(n^2)             | Inefficient, rarely used in practice.    |
+| Selection Sort | Ω(n^2)            | O(n^2)               | O(n^2)             | Simple but always performs O(n^2) work. |
+| Insertion Sort | Ω(n)              | O(n^2)               | O(n^2)             | Good for nearly sorted data.             |
+| Merge Sort     | Ω(n log n)        | O(n log n)           | O(n log n)         | Requires extra memory for merging.       |
+| Quick Sort     | Ω(n log n)        | O(n log n)           | O(n^2)             | Highly efficient with good pivot choice. |
+
+#### Explanation
+1. **Best Case (Ω)**:
+   - Indicates the minimum time the algorithm will take (best performance).
+   - Example: For Bubble Sort, when the array is already sorted, it takes Ω(n) because it only performs one pass.
+
+2. **Average Case (O)**:
+   - Represents the time complexity in a general scenario.
+   - Example: For Quick Sort, on average, it takes O(n log n) due to its divide-and-conquer strategy.
+
+3. **Worst Case (O)**:
+   - Describes the maximum time the algorithm might take (worst performance).
+   - Example: For Quick Sort, in the worst case (poor pivot choice), it takes O(n^2).
+
+### Comparison of Big-O (O) and Omega (Ω)
+
+Big-O and Omega are used to analyze the performance of algorithms. Here's a comparison between them:
+
+| **Aspect**          | **Big-O (O)**                       | **Omega (Ω)**                      |
+|----------------------|-------------------------------------|------------------------------------|
+| **Definition**       | Represents the upper bound of the algorithm's runtime. | Represents the lower bound of the algorithm's runtime. |
+| **Purpose**          | To describe the worst-case scenario. | To describe the best-case scenario. |
+| **Indicates**        | The maximum time/resources an algorithm might need. | The minimum time/resources an algorithm will need. |
+| **Use Case**         | When analyzing how bad the performance can get. | When analyzing how good the performance can be. |
+| **Examples**         | Linear Search: O(n) - check all elements in the worst case. | Linear Search: Ω(1) - find the element at the first position in the best case. |
+| **Viewpoint**        | Focuses on the ceiling of performance. | Focuses on the floor of performance. |
+
+#### Summary
+- **Big-O** is concerned with the maximum growth rate (upper bound) of the algorithm.
+- **Omega** is concerned with the minimum growth rate (lower bound) of the algorithm.
 
 ### Conclusion
 
