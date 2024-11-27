@@ -456,6 +456,41 @@ Big-O and Omega are used to analyze the performance of algorithms. Here's a comp
             printf("%s\n", (s+2));  //output : !
          }
 
+## ความหมายของ `typedef uint8_t BYTE;` ในภาษา C
+
+### `typedef`
+- เป็นคีย์เวิร์ดที่ใช้สร้าง **ชื่อใหม่** (alias) สำหรับชนิดข้อมูล (data type) ที่มีอยู่ เพื่อให้อ่านง่ายขึ้นหรือให้เหมาะสมกับการใช้งานเฉพาะด้าน
+
+### `uint8_t`
+- เป็นชนิดข้อมูลจากไลบรารี `<stdint.h>` ซึ่งแทนประเภทข้อมูล **unsigned 8-bit integer**
+  - หมายความว่าข้อมูลนี้มีค่าได้ตั้งแต่ `0` ถึง `255` (0 ถึง \( 2^8 - 1 \))
+  - โดยปกติใช้แทนค่าที่เก็บใน **1 ไบต์**
+
+### `BYTE`
+- เป็นชื่อใหม่ที่กำหนดขึ้นมาแทน `uint8_t` โดยการใช้ `typedef`
+
+---
+
+### ความหมายรวม
+คำสั่ง `typedef uint8_t BYTE;` สร้างชื่อชนิดข้อมูลใหม่ **`BYTE`** ที่มีความหมายเหมือนกับ `uint8_t` ซึ่งเป็นเลขจำนวนเต็มขนาด 8 บิตที่ไม่มีเครื่องหมาย
+
+---
+
+### ตัวอย่างการใช้งาน
+
+```c
+#include <stdint.h>
+#include <stdio.h>
+
+typedef uint8_t BYTE; // สร้างชื่อใหม่ว่า BYTE แทน uint8_t
+
+int main() {
+    BYTE value = 255; // ค่า 255 อยู่ในช่วงของ uint8_t
+    printf("Value: %u\n", value); // แสดงผล 255
+    return 0;
+}
+```
+
 
 ## Point Arithmetic
    * for Print the char with array and pointer in string
