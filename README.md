@@ -387,7 +387,7 @@ Big-O and Omega are used to analyze the performance of algorithms. Here's a comp
          int main(void)
          {
             int n =50;
-            printf("%p\n",&n);
+            printf("%p\n",&n); //0x7ffec645a19c
          }
 
    * __*__ to identify the address in memory (POINTER)
@@ -398,7 +398,7 @@ Big-O and Omega are used to analyze the performance of algorithms. Here's a comp
          {
             int n =50;
             int *p = &n;
-            printf("%p\n",p);
+            printf("%p\n",p);  //0x7ffcbcf09a7c
          }
       * *p is the pointer parameter that store the number of address of n
       * *p (address of n) --> n --> 50
