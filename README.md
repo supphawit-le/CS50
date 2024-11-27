@@ -377,6 +377,8 @@ Big-O and Omega are used to analyze the performance of algorithms. Here's a comp
 ## Base-16
    * 00 = 0
    * FF = 255
+   * In Base-16 (hexadecimal) notation, the prefix 0x is used to indicate that the number following it is in hexadecimal format
+        - 0x1A3F = 1 × 16^3 + 10 × 16^2 + 3 × 16^1 + 15 × 16^0 = Equivalent to 6703 in decimal.
 ## Pointer Operator
    * __&__ to find the address of memory that the variable stored
 
